@@ -1,10 +1,11 @@
-window.loadComponent = ( function() {
+window.loadComponent = (function() {
 	function fetchAndParse( URL ) {
-		return fetch( URL ).then( ( response ) => {
+		return fetch(URL).then( response => {
 			return response.text();
-		} ).then( ( html ) => {
+		} ).then(html => {
+			console.log(html);
 			const parser = new DOMParser();
-			const document = parser.parseFromString( html, 'text/html' );
+			const document = parser.parseFromString( html, 'text/html');
 			const head = document.head;
 			const template = head.querySelector( 'template' );
 			const style = head.querySelector( 'style' );
@@ -15,15 +16,15 @@ window.loadComponent = ( function() {
 				style,
 				script
 			};
-		} );
+		});
 	}
 
-	function getSettings( { template, style, script } ) {
+	function getSettings({ template, style, script }) {
 		const jsFile = new Blob( [ script.textContent ], { type: 'application/javascript' } );
 		const jsURL = URL.createObjectURL( jsFile );
 
-		function getListeners( settings ) {
-			return Object.entries( settings ).reduce( ( listeners, [ setting, value ] ) => {
+		function getListeners(settings) {
+			return Object.entries( settings ).reduce( (listeners, [ setting, value ]) => {
 				if ( setting.startsWith( 'on' ) ) {
 					listeners[ setting[ 2 ].toLowerCase() + setting.substr( 3 ) ] = value;
 				}
@@ -32,7 +33,7 @@ window.loadComponent = ( function() {
 			}, {} );
 		}
 
-		return import( jsURL ).then( ( module ) => {
+		return import(jsURL).then(module => {
 			const listeners = getListeners( module.default );
 
 			return {

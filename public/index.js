@@ -1,1 +1,3 @@
-console.log(22);
+loadComponent('../components/HelloWorld.wc').then(component => {
+    console.log('Component loaded');
+});
