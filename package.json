@@ -1,0 +1,22 @@
+{
+  "name": "simple-sfc",
+  "version": "1.0.0",
+  "description": "SFC by pure js.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server -c-1 -p 8006"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaotianxia/simple-sfc.git"
+  },
+  "keywords": [
+    "sfc"
+  ],
+  "author": "Denzel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaotianxia/simple-sfc/issues"
+  },
+  "homepage": "https://github.com/xiaotianxia/simple-sfc#readme"
+}
