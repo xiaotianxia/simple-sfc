@@ -1,20 +1,8 @@
 <template>
-  <div class="hello">
-    <p>Hello, world! My name is <slot></slot>.</p>
-  </div>
+    <div class="hello">
+        <p>Hello, world! My name is <slot></slot>.</p>
+    </div>
 </template>
-
-<style>
-    div {
-        background: red;
-        border-radius: 30px;
-        padding: 20px;
-        font-size: 20px;
-        text-align: center;
-        width: 300px;
-        margin: 0 auto;
-    }
-</style>
 
 <script>
     export default {
@@ -22,6 +10,21 @@
         
         onClick() {
             alert( `Don't touch me!` );
+        },
+
+        onMouseover() {
+            console.log(123)
         }
     }
 </script>
+
+<style>
+    div {
+        background-color: cadetblue;
+        max-width: 400px;
+        padding: 10px;
+        font-size: 18px;
+        text-align: center;
+        margin: 20px auto;
+    }
+</style>
