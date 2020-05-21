@@ -1,5 +1,6 @@
 <template>
     <div class="hello">
+        {{ msg }}
         <p>Hello, world! My name is <slot></slot>.</p>
     </div>
 </template>
@@ -9,8 +10,12 @@
         name: 'hello-world',
 
         // TODO:
-        props: {
-            a: 1
+        props: [
+            'msg'
+        ],
+
+        test() {
+            console.log(this.props)
         },
         
         listeners: {
@@ -19,8 +24,17 @@
             },
 
             mouseover() {
-                console.log(123)
+                console.log('mouseovered')
             },
+
+            mouseout() {
+                console.log('mouseouted')
+            },
+        },
+
+        // TODO:
+        mounted() {
+            console.log('mounted')
         }
     }
 </script>
