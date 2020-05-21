@@ -7,13 +7,20 @@
 <script>
     export default {
         name: 'hello-world',
-        
-        onClick() {
-            alert( `Don't touch me!` );
-        },
 
-        onMouseover() {
-            console.log(123)
+        // TODO:
+        props: {
+            a: 1
+        },
+        
+        listeners: {
+            click() {
+                alert('clicked');
+            },
+
+            mouseover() {
+                console.log(123)
+            },
         }
     }
 </script>
@@ -22,9 +29,10 @@
     div {
         background-color: cadetblue;
         max-width: 400px;
+        margin: 20px auto;
         padding: 10px;
         font-size: 18px;
         text-align: center;
-        margin: 20px auto;
+        cursor: pointer;
     }
 </style>

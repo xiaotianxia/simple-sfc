@@ -22,22 +22,11 @@ window.loadComponent = (function() {
 		const jsFile = new Blob([ script.textContent ], { type: 'application/javascript' });
 		const jsURL = URL.createObjectURL(jsFile);
 
-		function getListeners(settings) {
-			return Object.entries( settings ).reduce( (listeners, [ setting, value ]) => {
-				if ( setting.startsWith( 'on' ) ) {
-					listeners[ setting[ 2 ].toLowerCase() + setting.substr( 3 ) ] = value;
-				}
-				return listeners;
-			}, {} );
-		}
-
 		return import(jsURL).then(module => {
 			console.log(module);
-			const listeners = getListeners( module.default );
-
 			return {
 				name: module.default.name,
-				listeners,
+				listeners: module.default.listeners,
 				template,
 				style
 			}
@@ -54,13 +43,13 @@ window.loadComponent = (function() {
 			_render() {
 				const shadow = this.attachShadow( { mode: 'open' } );
 
-				shadow.appendChild( style.cloneNode( true ) );
-				shadow.appendChild( document.importNode( template.content, true ) );
+				shadow.appendChild(style.cloneNode( true ));
+				shadow.appendChild(document.importNode( template.content, true ));
 			}
 
 			_attachListeners() {
-				Object.entries( listeners ).forEach( ( [ event, listener ] ) => {
-					this.addEventListener( event, listener, false );
+				Object.entries(listeners).forEach(([ event, listener ]) => {
+					this.addEventListener(event, listener, false);
 				} );
 			}
 		}
